@@ -53,7 +53,7 @@ offset_left = 48.0
 offset_top = 53.0
 offset_right = 157.0
 offset_bottom = 77.0
-text = "TOTAL TIME"
+text = "000"
 
 [connection signal="file_selected" from="FD_OPEN" to="." method="_on_fd_open_file_selected"]
 [connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]
