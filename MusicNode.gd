@@ -1,8 +1,10 @@
 extends Node2D
 
 @onready var fd_open = $FD_OPEN
+
 @onready var music_label = $MusicLabel
 @onready var music_time_label = $MusicTimeLabel
+@onready var music_total_time = $MusicTotalTimeLabel
 
 @export var audio_bus_name := "Master" #Makes the var Master audio bus
 @onready var _bus := AudioServer.get_bus_index(audio_bus_name) #Sets bus index to Master
@@ -30,6 +32,7 @@ func _on_fd_open_file_selected(path):
 	$AudioStreamPlayer.stream = stream  #The loaded song in memeory
 	$AudioStreamPlayer.play()
 	music_label.visible = true
+	music_total_time.text = str(int($AudioStreamPlayer.stream.get_length()))
 
 
 func _on_h_slider_value_changed(value: float):
