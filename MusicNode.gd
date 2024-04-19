@@ -3,7 +3,6 @@ extends Node2D
 @onready var fd_open = $FD_OPEN
 @onready var music_label = $MusicLabel
 @onready var music_time_label = $MusicTimeLabel
-## h
 
 @export var audio_bus_name := "Master" #Makes the var Master audio bus
 @onready var _bus := AudioServer.get_bus_index(audio_bus_name) #Sets bus index to Master
