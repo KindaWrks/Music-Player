@@ -20,7 +20,7 @@ func fd_o_filters():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	music_label.text = fd_open.current_file.get_basename() #Gets the current file and removes the .MP3
-	music_time_label.text = str(int($AudioStreamPlayer.get_playback_position()))
+	music_time_label.text = str(int($AudioStreamPlayer.get_playback_position())) #Make time count in int rather then flaot
 	
 func _on_fd_open_file_selected(path):
 	var snd_file = FileAccess.open(path, FileAccess.READ) #Open path and reaf from the file
