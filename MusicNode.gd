@@ -22,8 +22,11 @@ func fd_o_filters():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	music_label.text = fd_open.current_file.get_basename() #Gets the current file and removes the .MP3
-	music_time_label.text = str(int($AudioStreamPlayer.get_playback_position())) #Make time count in int rather then flaot
 	
+	if $AudioStreamPlayer.playing: #Make time count down in int rather then float and show total time
+		music_time_label.text = str(int($AudioStreamPlayer.stream.get_length()) - int($AudioStreamPlayer.get_playback_position()))
+		music_total_time.text = str(int($AudioStreamPlayer.stream.get_length()))
+		
 func _on_fd_open_file_selected(path):
 	var snd_file = FileAccess.open(path, FileAccess.READ) #Open path and reaf from the file
 	var stream = AudioStreamMP3.new() #Create a bew MP3 Audio stream
@@ -32,7 +35,7 @@ func _on_fd_open_file_selected(path):
 	$AudioStreamPlayer.stream = stream  #The loaded song in memeory
 	$AudioStreamPlayer.play()
 	music_label.visible = true
-	music_total_time.text = str(int($AudioStreamPlayer.stream.get_length()))
+	
 
 
 func _on_h_slider_value_changed(value: float):
