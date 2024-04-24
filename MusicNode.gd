@@ -21,11 +21,16 @@ func fd_o_filters():
 	fd_open.add_filter("*.mp3 ; Music") #Set filter for MP3 files
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	
-	if $AudioStreamPlayer.playing: #Make time count down in int rather then float and show total time
-		music_time_label.text = str(int($AudioStreamPlayer.stream.get_length()) - int($AudioStreamPlayer.get_playback_position()))
-		music_total_time.text = str(int($AudioStreamPlayer.stream.get_length()))
+func _process(_delta): 
+	if $AudioStreamPlayer.playing:
+		var total_length = int($AudioStreamPlayer.stream.get_length())
+		var current_position = int($AudioStreamPlayer.get_playback_position())
+		# conversion of playback to minutes and seconds, calls error discard decimal
+		var minutes = (total_length - current_position) / 60
+		var seconds = (total_length - current_position) % 60
+		# Display through text labels
+		music_time_label.text = str(minutes).pad_zeros(1) + ":" + str(seconds).pad_zeros(2)
+		music_total_time.text = str(total_length / 60).pad_zeros(1) + ":" + str(total_length % 60).pad_zeros(2)
 	print(musicarray)
 	
 	

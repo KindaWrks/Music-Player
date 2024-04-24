@@ -34,16 +34,16 @@ value = 0.3
 [node name="MusicTimeLabel" type="Label" parent="."]
 offset_left = 48.0
 offset_top = 28.0
-offset_right = 157.0
+offset_right = 85.0
 offset_bottom = 52.0
-text = "COUNTDOWN"
+text = "0:00"
 
 [node name="MusicTotalTimeLabel" type="Label" parent="."]
 offset_left = 48.0
 offset_top = 53.0
 offset_right = 157.0
 offset_bottom = 77.0
-text = "TOTAL"
+text = "0:00"
 
 [node name="song_list" type="ItemList" parent="."]
 offset_left = 294.0
