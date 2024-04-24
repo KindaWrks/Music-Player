@@ -11,6 +11,7 @@ extends Node2D
 @onready var _bus := AudioServer.get_bus_index(audio_bus_name) #Sets bus index to Master
 
 var musicarray = [] # Initialize array only
+var musicindex = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -55,7 +56,7 @@ func _on_fd_open_files_selected(paths):
 		#$song_list.add_item(file_name_without_extension)
 
 func play_next_song():
-	var next_song_path = musicarray.pop_front() # Get the next song from the queue
+	var next_song_path = musicarray[musicindex] # Get the next song from the queue
 	var snd_file = FileAccess.open(next_song_path, FileAccess.READ) #Open path and read from the file
 	var stream = AudioStreamMP3.new() #Create a new MP3 Audio stream
 	stream.data = snd_file.get_buffer(snd_file.get_length()) # Load entire song into memory(not ideal)

@@ -55,5 +55,11 @@ offset_right = 157.0
 offset_bottom = 77.0
 text = "TOTAL"
 
+[node name="song_list" type="ItemList" parent="."]
+offset_left = 58.0
+offset_top = 109.0
+offset_right = 250.0
+offset_bottom = 218.0
+
 [connection signal="files_selected" from="FD_OPENfiles" to="." method="_on_fd_open_files_selected"]
 [connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]
