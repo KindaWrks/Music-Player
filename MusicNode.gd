@@ -49,6 +49,10 @@ func _on_fd_open_files_selected(paths):
 
 		# Add the selected song to the queue
 		musicarray.append(path)
+		
+		#Add song list
+		#var file_name_without_extension = path.get_file().get_basename()
+		#$song_list.add_item(file_name_without_extension)
 
 func play_next_song():
 	var next_song_path = musicarray.pop_front() # Get the next song from the queue
