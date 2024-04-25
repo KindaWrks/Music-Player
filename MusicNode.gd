@@ -15,13 +15,20 @@ var musicindex = 0
 func _ready():
 	fd_o_filters()
 	fd_open.visible = true
+	
 
 func fd_o_filters():
 	fd_open.current_dir = "/"  #Set current dir as Root
 	fd_open.add_filter("*.mp3 ; Music") #Set filter for MP3 files
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta): 
+	next_song_in_array()
+	update_time_labels()
+	
+
+func update_time_labels():
 	if $AudioStreamPlayer.playing:
 		var total_length = int($AudioStreamPlayer.stream.get_length())
 		var current_position = int($AudioStreamPlayer.get_playback_position())
@@ -33,11 +40,12 @@ func _process(_delta):
 		music_total_time.text = str(total_length / 60).pad_zeros(1) + ":" + str(total_length % 60).pad_zeros(2)
 	print(musicarray)
 	
-	
+
+func next_song_in_array():
 	# Check if the song ended and play the next song in the queue
 	if not $AudioStreamPlayer.playing and musicarray.size() > 0:
 		play_next_song()
-
+	
 
 func _on_fd_open_files_selected(paths):
 	for path in paths:
@@ -51,9 +59,10 @@ func _on_fd_open_files_selected(paths):
 		# Add the selected song to the queue
 		musicarray.append(path)
 		
-		#Add song list
+		#Add songs to itemlist
 		var file_name_without_extension = path.get_file().get_basename()
 		$song_list.add_item(file_name_without_extension)
+	
 
 func play_next_song():
 	var next_song_path = musicarray[musicindex] # Get the next song from the queue
@@ -63,18 +72,22 @@ func play_next_song():
 	snd_file.close() #Close file.
 	$AudioStreamPlayer.stream = stream  #The loaded song in memory
 	$AudioStreamPlayer.play()
+	
 
 func _on_buttonshow_pressed(): #Show Filedialog
 	fd_open.visible = true
 	
+
 func _on_h_slider_value_changed(value: float):
 	AudioServer.set_bus_volume_db(_bus,linear_to_db(value)) #Control volume as a float
+	
 
 # Called when an item in the song list is selected
 func _on_song_list_item_selected(index):
 	if index < musicarray.size():
 		var selected_song_path = musicarray[index]
 		play_song(selected_song_path)
+		
 
 # Function to play a selected song
 func play_song(song_path):
@@ -84,3 +97,4 @@ func play_song(song_path):
 	snd_file.close()
 	$AudioStreamPlayer.stream = stream
 	$AudioStreamPlayer.play()
+	
