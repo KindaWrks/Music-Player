@@ -2,8 +2,8 @@ extends Node2D
 
 @onready var fd_open = $FD_OPENfiles
 
-@onready var music_time_label = $MusicTimeLabel
-@onready var music_total_time = $MusicTotalTimeLabel
+@onready var music_time_label = $HBoxContainer/MusicTimeLabel
+@onready var music_total_time = $HBoxContainer/MusicTotalTimeLabel
 
 # Add this variable to keep track of the currently playing song index
 var current_playing_index = -1
@@ -17,7 +17,7 @@ var musicindex = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	fd_o_filters()
-	fd_open.visible = true
+	fd_open.visible = false
 	
 
 func fd_o_filters():
@@ -100,7 +100,7 @@ func play_next_song():
 	update_current_playing_index(musicindex)
 	
 
-func _on_buttonshow_pressed(): #Show Filedialog
+func _on_button_show_pressed(): # Replace with function body. #Show Filedialog
 	fd_open.visible = true
 	
 
@@ -128,4 +128,42 @@ func play_song(song_path):
 	var index = musicarray.find(song_path)
 	update_current_playing_index(index)
 
-	
+ ## save playlist to a file ##
+func save_playlist(_file_path: String):
+	var file = FileAccess.open("user://Playlist.save", FileAccess.WRITE)
+	if file != null:
+		for song_path in musicarray:
+			file.store_line(song_path)
+		file.close()
+	else:
+		print("Error: Unable to save playlist")
+
+func _on_button_save_playlist_pressed():
+	var file_path = "user://Playlist.save"  # Set your desired file path here
+	save_playlist(file_path)
+
+
+##	load the playlist from a file and start playing the first song ##
+func load_playlist(_file_path: String):
+	var file = FileAccess.open("user://Playlist.save", FileAccess.READ)
+	if file != null:
+		clear_playlist()  # Clear existing playlist
+		$song_list.clear()  # Clear the song list in the GUI
+
+		while not file.eof_reached():
+			var line = file.get_line().strip_edges()  # Read each line from the file
+			if line != "":
+				musicarray.append(line)  # Add song paths to the playlist
+				$song_list.add_item(line.get_file().get_basename())  # Add song to the song list
+		file.close()
+	else:
+		print("Error: Unable to load playlist")
+
+# Function to clear the existing playlist
+func clear_playlist():
+	musicarray.clear()
+
+func _on_button_load_playlist_pressed():
+	var file_path = "user://Playlist.save"
+	load_playlist(file_path)
+
