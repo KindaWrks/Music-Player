@@ -5,6 +5,9 @@ extends Node2D
 @onready var music_time_label = $MusicTimeLabel
 @onready var music_total_time = $MusicTotalTimeLabel
 
+# Add this variable to keep track of the currently playing song index
+var current_playing_index = -1
+
 @export var audio_bus_name := "Master" #Makes the var Master audio bus
 @onready var _bus := AudioServer.get_bus_index(audio_bus_name) #Sets bus index to Master
 
@@ -27,6 +30,22 @@ func _process(_delta):
 	next_song_in_array()
 	update_time_labels()
 	
+	
+# Update the appearance of the song list
+func update_song_list_appearance():
+	for i in range($song_list.get_item_count()):
+		var item_text = musicarray[i].get_file().get_basename()
+		$song_list.set_item_text(i, item_text)
+		
+		# Highlight the currently playing song
+		if i == current_playing_index:
+			$song_list.select(i)
+
+# Add this function to update the appearance of the song list when a new song starts playing
+func update_current_playing_index(index):
+	current_playing_index = index
+	update_song_list_appearance()
+	
 
 func update_time_labels():
 	if $AudioStreamPlayer.playing:
@@ -41,9 +60,12 @@ func update_time_labels():
 	print(musicarray)
 	
 
+# Check if the song ended and play the next song in the queue
 func next_song_in_array():
-	# Check if the song ended and play the next song in the queue
 	if not $AudioStreamPlayer.playing and musicarray.size() > 0:
+		musicindex += 1
+		if musicindex >= musicarray.size():
+			musicindex = 0
 		play_next_song()
 	
 
@@ -64,14 +86,18 @@ func _on_fd_open_files_selected(paths):
 		$song_list.add_item(file_name_without_extension)
 	
 
+# Function to play the next song in the queue
 func play_next_song():
-	var next_song_path = musicarray[musicindex] # Get the next song from the queue
-	var snd_file = FileAccess.open(next_song_path, FileAccess.READ) #Open path and read from the file
-	var stream = AudioStreamMP3.new() #Create a new MP3 Audio stream
-	stream.data = snd_file.get_buffer(snd_file.get_length()) # Load entire song into memory(not ideal)
-	snd_file.close() #Close file.
-	$AudioStreamPlayer.stream = stream  #The loaded song in memory
+	var next_song_path = musicarray[musicindex]
+	var snd_file = FileAccess.open(next_song_path, FileAccess.READ)
+	var stream = AudioStreamMP3.new()
+	stream.data = snd_file.get_buffer(snd_file.get_length())
+	snd_file.close()
+	$AudioStreamPlayer.stream = stream
 	$AudioStreamPlayer.play()
+
+	# Update the currently playing index and the appearance of the song list
+	update_current_playing_index(musicindex)
 	
 
 func _on_buttonshow_pressed(): #Show Filedialog
@@ -97,4 +123,9 @@ func play_song(song_path):
 	snd_file.close()
 	$AudioStreamPlayer.stream = stream
 	$AudioStreamPlayer.play()
+
+	# Update the currently playing index and the appearance of the song list
+	var index = musicarray.find(song_path)
+	update_current_playing_index(index)
+
 	
