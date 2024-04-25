@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://xp4vtry6yety"]
+[gd_scene load_steps=4 format=3 uid="uid://xp4vtry6yety"]
 
 [ext_resource type="Script" path="res://MusicNode.gd" id="1_i2u8d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ebdc6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aseyp"]
 
 [node name="MusicNode" type="Node2D"]
 script = ExtResource("1_i2u8d")
@@ -50,6 +54,12 @@ offset_left = 294.0
 offset_top = 127.0
 offset_right = 538.0
 offset_bottom = 240.0
+theme_override_colors/font_color = Color(0, 0.694118, 0, 1)
+theme_override_colors/font_hovered_color = Color(0, 1, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 1, 0, 1)
+theme_override_colors/guide_color = Color(0.716296, 0.716296, 0.716296, 1)
+theme_override_styles/selected = SubResource("StyleBoxEmpty_ebdc6")
+theme_override_styles/selected_focus = SubResource("StyleBoxEmpty_aseyp")
 
 [connection signal="files_selected" from="FD_OPENfiles" to="." method="_on_fd_open_files_selected"]
 [connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]
