@@ -11,7 +11,9 @@ config_version=5
 [application]
 
 config/name="Music Player"
+run/main_scene="res://MusicNode.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [display]

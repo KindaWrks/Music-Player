@@ -28,9 +28,9 @@ offset_bottom = 248.0
 color = Color(0, 0, 0, 0.243137)
 
 [node name="HSlider" type="HSlider" parent="."]
-offset_left = 285.0
+offset_left = 293.0
 offset_top = 232.0
-offset_right = 544.0
+offset_right = 540.0
 offset_bottom = 286.0
 max_value = 1.0
 step = 0.01
@@ -49,14 +49,18 @@ theme_override_styles/selected = SubResource("StyleBoxEmpty_ebdc6")
 theme_override_styles/selected_focus = SubResource("StyleBoxEmpty_aseyp")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_left = 143.0
-offset_top = 134.0
+offset_left = 154.0
+offset_top = 119.0
 offset_right = 283.0
-offset_bottom = 243.0
+offset_bottom = 255.0
 
 [node name="ButtonShow" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Add Music"
+
+[node name="ButtonShuffle" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Shuffle Music"
 
 [node name="ButtonSavePlaylist" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -88,5 +92,6 @@ text = "0:00"
 [connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="item_selected" from="song_list" to="." method="_on_song_list_item_selected"]
 [connection signal="pressed" from="VBoxContainer/ButtonShow" to="." method="_on_button_show_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonShuffle" to="." method="_on_button_shuffle_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonSavePlaylist" to="." method="_on_button_save_playlist_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonLoadPlaylist" to="." method="_on_button_load_playlist_pressed"]

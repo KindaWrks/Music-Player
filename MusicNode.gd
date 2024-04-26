@@ -167,3 +167,15 @@ func _on_button_load_playlist_pressed():
 	var file_path = "user://Playlist.save"
 	load_playlist(file_path)
 
+# Add this function to shuffle the songs in the playlist
+func shuffle_songs():
+	if musicarray.size() > 0:
+		musicarray.shuffle()
+		update_song_list_appearance()
+
+# Called when the shuffle button is pressed
+func _on_button_shuffle_pressed():
+	shuffle_songs()
+	if musicarray.size() > 0:
+		musicindex = 0
+		play_next_song()
