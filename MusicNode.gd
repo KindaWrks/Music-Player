@@ -24,6 +24,7 @@ func fd_filters():
 	fd_open.current_dir = "/"  #Set current dir as Root
 	fd_open.add_filter("*.mp3 ; Music") #Set filter for MP3 files
 	fd_folder.current_dir = "/"
+	fd_folder.add_filter("*.mp3 ; Music") #Set filter for MP3 files
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

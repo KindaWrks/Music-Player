@@ -32,7 +32,7 @@ access = 2
 offset_left = 288.0
 offset_top = 120.0
 offset_right = 544.0
-offset_bottom = 290.0
+offset_bottom = 289.0
 color = Color(0, 0, 0, 0.243137)
 
 [node name="HSlider" type="HSlider" parent="."]
