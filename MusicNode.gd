@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var fd_open = $FD_OPENfiles
+@onready var fd_folder = $FD_OPENfolder
 
 @onready var music_time_label = $HBoxContainer/MusicTimeLabel
 @onready var music_total_time = $HBoxContainer/MusicTotalTimeLabel
@@ -16,13 +17,13 @@ var musicindex = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	fd_o_filters()
-	fd_open.visible = false
+	fd_filters()
 	
 
-func fd_o_filters():
+func fd_filters():
 	fd_open.current_dir = "/"  #Set current dir as Root
 	fd_open.add_filter("*.mp3 ; Music") #Set filter for MP3 files
+	fd_folder.current_dir = "/"
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -179,3 +180,29 @@ func _on_button_shuffle_pressed():
 	if musicarray.size() > 0:
 		musicindex = 0
 		play_next_song()
+		
+	## Load MP3s from a folder
+func _on_fd_ope_nfolder_dir_selected(path):
+	var dirc = DirAccess.open(path)
+	if dirc:
+		dirc.list_dir_begin()
+		var file_name = dirc.get_next()
+		while file_name != "":
+			if not dirc.current_is_dir():
+				# Check if the file is an MP3 file
+				if file_name.get_file().ends_with(".mp3"):
+					print("Found MP3 file: " + file_name)
+					# Add the file path to the music array
+					musicarray.append(dirc.get_current_dir() + "/" + file_name)
+					$song_list.add_item(file_name)
+			file_name = dirc.get_next()
+
+		# Play the first song if the array is not empty
+		if musicarray.size() > 0:
+			play_next_song()
+	else:
+		print("An error occurred when trying to access the path.")
+		
+		
+func _on_button_folder_pressed():
+	fd_folder.visible = true
