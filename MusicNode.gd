@@ -6,11 +6,13 @@ extends Node2D
 @onready var music_time_label = $HBoxContainer/MusicTimeLabel
 @onready var music_total_time = $HBoxContainer/MusicTotalTimeLabel
 
-# Add this variable to keep track of the currently playing song index
+# variable to keep track of the currently playing song index and pause postion
 var current_playing_index = -1
+var paused_position: float = 0.0
 
 @export var audio_bus_name := "Master" #Makes the var Master audio bus
 @onready var _bus := AudioServer.get_bus_index(audio_bus_name) #Sets bus index to Master
+var is_audio_paused = false
 
 var musicarray = [] # Initialize array only
 var musicindex = 0
@@ -62,14 +64,14 @@ func update_time_labels():
 	print(musicarray)
 	
 
-# Check if the song ended and play the next song in the queue
+# Check if the song ended and play the next song in the queue, updated to allow pausing
 func next_song_in_array():
-	if not $AudioStreamPlayer.playing and musicarray.size() > 0:
+	if not $AudioStreamPlayer.playing and !is_audio_paused and musicarray.size() > 0:
 		musicindex += 1
 		if musicindex >= musicarray.size():
 			musicindex = 0
 		play_next_song()
-	
+
 
 func _on_fd_open_files_selected(paths):
 	for path in paths:
@@ -207,3 +209,17 @@ func _on_fd_ope_nfolder_dir_selected(path):
 		
 func _on_button_folder_pressed():
 	fd_folder.visible = true
+
+
+func _on_button_pause_pressed():
+	# Toggle the paused state variable
+	is_audio_paused = !is_audio_paused
+	# Check the current paused state
+	if is_audio_paused:
+		# If paused, pause the audio playback and get the position as a float
+		paused_position = $AudioStreamPlayer.get_playback_position()
+		$AudioStreamPlayer.stop()
+	else:
+		# If not paused, resume the audio playback
+		$AudioStreamPlayer.play()
+		$AudioStreamPlayer.seek(paused_position)
