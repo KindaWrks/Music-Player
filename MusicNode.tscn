@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://xp4vtry6yety"]
 
 [ext_resource type="Script" path="res://MusicNode.gd" id="1_i2u8d"]
-[ext_resource type="Texture2D" uid="uid://tbknqsbglyxi" path="res://Assets/blckgreen.jpg" id="2_1vyme"]
+[ext_resource type="Texture2D" uid="uid://bakk3kl73dom3" path="res://Assets/blckgreen.jpg" id="2_1vyme"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ebdc6"]
 
