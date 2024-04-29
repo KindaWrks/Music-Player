@@ -238,4 +238,3 @@ func _on_button_previous_pressed():
 	if musicindex < 0:
 		musicindex = musicarray.size() - 1
 	play_next_song()
-
