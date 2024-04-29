@@ -104,6 +104,20 @@ text = "Load Playlist"
 layout_mode = 2
 text = "Pause/Resume"
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+offset_left = 170.0
+offset_top = 326.0
+offset_right = 294.0
+offset_bottom = 357.0
+
+[node name="ButtonPrevious" type="Button" parent="HBoxContainer2"]
+layout_mode = 2
+text = "Back"
+
+[node name="ButtonNext" type="Button" parent="HBoxContainer2"]
+layout_mode = 2
+text = "Next"
+
 [connection signal="files_selected" from="FD_OPENfiles" to="." method="_on_fd_open_files_selected"]
 [connection signal="dir_selected" from="FD_OPENfolder" to="." method="_on_fd_ope_nfolder_dir_selected"]
 [connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]
@@ -114,3 +128,5 @@ text = "Pause/Resume"
 [connection signal="pressed" from="VBoxContainer/ButtonSavePlaylist" to="." method="_on_button_save_playlist_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonLoadPlaylist" to="." method="_on_button_load_playlist_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonPause" to="." method="_on_button_pause_pressed"]
+[connection signal="pressed" from="HBoxContainer2/ButtonPrevious" to="." method="_on_button_previous_pressed"]
+[connection signal="pressed" from="HBoxContainer2/ButtonNext" to="." method="_on_button_next_pressed"]

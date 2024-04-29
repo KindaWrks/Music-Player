@@ -223,3 +223,19 @@ func _on_button_pause_pressed():
 		# If not paused, resume the audio playback
 		$AudioStreamPlayer.play()
 		$AudioStreamPlayer.seek(paused_position)
+		
+	
+# Called when the "Next" button is pressed
+func _on_button_next_pressed():
+	musicindex += 1
+	if musicindex >= musicarray.size():
+		musicindex = 0
+	play_next_song()
+
+# Called when the "Previous" button is pressed
+func _on_button_previous_pressed():
+	musicindex -= 1
+	if musicindex < 0:
+		musicindex = musicarray.size() - 1
+	play_next_song()
+
