@@ -12,7 +12,7 @@ script = ExtResource("1_i2u8d")
 
 [node name="FD_OPENfiles" type="FileDialog" parent="."]
 title = "Open File(s)"
-position = Vector2i(23, 62)
+position = Vector2i(0, 30)
 size = Vector2i(454, 400)
 ok_button_text = "Open"
 file_mode = 1
@@ -20,7 +20,7 @@ access = 2
 
 [node name="FD_OPENfolder" type="FileDialog" parent="."]
 title = "Open a Directory"
-position = Vector2i(23, 62)
+position = Vector2i(0, 30)
 size = Vector2i(454, 400)
 ok_button_text = "Select Current Folder"
 file_mode = 2
