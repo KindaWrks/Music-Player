@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://xp4vtry6yety"]
+[gd_scene load_steps=13 format=3 uid="uid://xp4vtry6yety"]
 
 [ext_resource type="Script" path="res://MusicNode.gd" id="1_i2u8d"]
 [ext_resource type="Texture2D" uid="uid://bakk3kl73dom3" path="res://Assets/blckgreen.jpg" id="2_1vyme"]
@@ -6,6 +6,22 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ebdc6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aseyp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gorfu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1slou"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5bnrn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t0ape"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xfgb3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0cb2f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dtews"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ixrs0"]
 
 [node name="MusicNode" type="Node2D"]
 position = Vector2(-119, 0)
@@ -88,26 +104,32 @@ offset_bottom = 304.0
 
 [node name="ButtonShow" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gorfu")
 text = "Add Music"
 
 [node name="ButtonFolder" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1slou")
 text = "Add Folder"
 
 [node name="ButtonShuffle" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5bnrn")
 text = "Shuffle Music"
 
 [node name="ButtonSavePlaylist" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_t0ape")
 text = "Save Playlist"
 
 [node name="ButtonLoadPlaylist" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xfgb3")
 text = "Load Playlist"
 
 [node name="ButtonPause" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0cb2f")
 text = "Pause/Resume"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
@@ -118,10 +140,12 @@ offset_bottom = 336.0
 
 [node name="ButtonPrevious" type="Button" parent="HBoxContainer2"]
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dtews")
 text = "Back"
 
 [node name="ButtonNext" type="Button" parent="HBoxContainer2"]
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ixrs0")
 text = "Next"
 
 [connection signal="files_selected" from="FD_OPENfiles" to="." method="_on_fd_open_files_selected"]
