@@ -1,7 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://xp4vtry6yety"]
+[gd_scene load_steps=15 format=3 uid="uid://xp4vtry6yety"]
 
 [ext_resource type="Script" path="res://MusicNode.gd" id="1_i2u8d"]
 [ext_resource type="Texture2D" uid="uid://bakk3kl73dom3" path="res://Assets/blckgreen.jpg" id="2_1vyme"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1pr3"]
+bg_color = Color(0, 0, 0, 0.764706)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lrlj1"]
 
@@ -52,12 +59,19 @@ access = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
-[node name="ColorRectLabel" type="ColorRect" parent="."]
+[node name="PanelListBG" type="Panel" parent="."]
 offset_left = 288.0
-offset_top = 99.0
+offset_top = 95.0
 offset_right = 544.0
 offset_bottom = 304.0
-color = Color(0, 0, 0, 0.243137)
+theme_override_styles/panel = SubResource("StyleBoxFlat_h1pr3")
+
+[node name="PanelButtonBG" type="Panel" parent="."]
+offset_left = 151.0
+offset_top = 94.0
+offset_right = 286.0
+offset_bottom = 341.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h1pr3")
 
 [node name="HSlider" type="HSlider" parent="."]
 offset_left = 294.0
