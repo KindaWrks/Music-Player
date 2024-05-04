@@ -60,32 +60,39 @@ access = 2
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="PanelListBG" type="Panel" parent="."]
-offset_left = 288.0
+offset_left = 279.0
 offset_top = 95.0
-offset_right = 544.0
-offset_bottom = 304.0
+offset_right = 535.0
+offset_bottom = 340.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_h1pr3")
 
 [node name="PanelButtonBG" type="Panel" parent="."]
-offset_left = 151.0
+offset_left = 142.0
 offset_top = 94.0
-offset_right = 286.0
+offset_right = 277.0
 offset_bottom = 341.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_h1pr3")
 
+[node name="PanelTimerBG" type="Panel" parent="."]
+offset_left = 329.0
+offset_top = 50.0
+offset_right = 464.0
+offset_bottom = 91.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h1pr3")
+
 [node name="HSlider" type="HSlider" parent="."]
-offset_left = 294.0
-offset_top = 289.0
-offset_right = 541.0
-offset_bottom = 343.0
+offset_left = 146.0
+offset_top = 231.0
+offset_right = 535.0
+offset_bottom = 471.0
 max_value = 1.0
 step = 0.01
 value = 0.3
 
 [node name="song_list" type="ItemList" parent="."]
-offset_left = 293.0
+offset_left = 284.0
 offset_top = 104.0
-offset_right = 538.0
+offset_right = 529.0
 offset_bottom = 298.0
 theme_override_colors/font_color = Color(0, 0.611765, 0, 1)
 theme_override_colors/font_hovered_color = Color(0, 1, 0, 1)
@@ -96,9 +103,9 @@ theme_override_styles/selected = SubResource("StyleBoxEmpty_ebdc6")
 theme_override_styles/selected_focus = SubResource("StyleBoxEmpty_aseyp")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_left = 361.0
+offset_left = 352.0
 offset_top = 51.0
-offset_right = 448.0
+offset_right = 439.0
 offset_bottom = 91.0
 
 [node name="MusicTimeLabel" type="Label" parent="HBoxContainer"]
@@ -114,9 +121,9 @@ layout_mode = 2
 text = "0:00"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_left = 154.0
+offset_left = 145.0
 offset_top = 98.0
-offset_right = 283.0
+offset_right = 274.0
 offset_bottom = 304.0
 
 [node name="ButtonShow" type="Button" parent="VBoxContainer"]
@@ -150,9 +157,9 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_0cb2f")
 text = "Pause/Resume"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
-offset_left = 170.0
+offset_left = 161.0
 offset_top = 305.0
-offset_right = 294.0
+offset_right = 285.0
 offset_bottom = 336.0
 
 [node name="ButtonPrevious" type="Button" parent="HBoxContainer2"]
