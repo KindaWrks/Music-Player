@@ -1,5 +1,8 @@
 extends Node2D
 
+var selected = false
+var dragging_start_position = Vector2()
+
 @onready var fd_open = $FD_OPENfiles
 @onready var fd_folder = $FD_OPENfolder
 
@@ -19,9 +22,13 @@ var musicindex = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	get_viewport().transparent_bg = true
 	fd_filters()
 	
-
+func quit_program():
+	if Input.is_action_just_pressed("Esc_Close"):
+		get_tree().quit()
+		
 func fd_filters():
 	fd_open.current_dir = "/"  #Set current dir as Root
 	fd_open.add_filter("*.mp3 ; Music") #Set filter for MP3 files
@@ -31,8 +38,14 @@ func fd_filters():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta): 
+	if selected:
+		var mouse_position = get_global_mouse_position()
+		var window_position = Vector2(DisplayServer.window_get_position())
+		DisplayServer.window_set_position(window_position + (mouse_position - dragging_start_position))
+	
 	next_song_in_array()
 	update_time_labels()
+	quit_program()
 	
 	
 # Update the appearance of the song list
@@ -238,3 +251,14 @@ func _on_button_previous_pressed():
 	if musicindex < 0:
 		musicindex = musicarray.size() - 1
 	play_next_song()
+
+
+func _on_area_2d_input_event(_viewport, _event, _shape_idx):
+	if Input.is_action_just_pressed("left_click"):
+		selected = true
+		dragging_start_position = get_global_mouse_position()
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
+			selected = false
