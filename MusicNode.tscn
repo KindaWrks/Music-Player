@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://xp4vtry6yety"]
+[gd_scene load_steps=18 format=3 uid="uid://xp4vtry6yety"]
 
 [ext_resource type="Script" path="res://MusicNode.gd" id="1_i2u8d"]
 [ext_resource type="Texture2D" uid="uid://g7x1hh6w0c6j" path="res://Assets/playerbg.png" id="2_v87sj"]
@@ -39,6 +39,8 @@ corner_radius_top_right = 10
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dtews"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ixrs0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3qgov"]
 
 [node name="MusicNode" type="Node2D"]
 position = Vector2(192, 34)
@@ -190,6 +192,21 @@ layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ixrs0")
 text = "Next"
 
+[node name="Area2DX" type="Area2D" parent="."]
+position = Vector2(209, 18)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DX"]
+position = Vector2(-4, 0)
+shape = SubResource("RectangleShape2D_3qgov")
+debug_color = Color(0, 0.6, 0.701961, 0.27451)
+
+[node name="LabelX" type="Label" parent="."]
+offset_left = 198.0
+offset_top = 7.0
+offset_right = 238.0
+offset_bottom = 30.0
+text = "X"
+
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="files_selected" from="FD_OPENfiles" to="." method="_on_fd_open_files_selected"]
 [connection signal="dir_selected" from="FD_OPENfolder" to="." method="_on_fd_ope_nfolder_dir_selected"]
@@ -203,3 +220,4 @@ text = "Next"
 [connection signal="pressed" from="VBoxContainer/ButtonPause" to="." method="_on_button_pause_pressed"]
 [connection signal="pressed" from="HBoxContainer2/ButtonPrevious" to="." method="_on_button_previous_pressed"]
 [connection signal="pressed" from="HBoxContainer2/ButtonNext" to="." method="_on_button_next_pressed"]
+[connection signal="input_event" from="Area2DX" to="." method="_on_area_2dx_input_event"]
