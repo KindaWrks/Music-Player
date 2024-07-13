@@ -259,10 +259,22 @@ func _on_area_2d_input_event(_viewport, _event, _shape_idx):
 		dragging_start_position = get_global_mouse_position()
 
 func _input(event):
+	## Stop dragging
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 			selected = false
-
+			
+	## Remove selected song with delete
+	if event.is_action_pressed("DEL"):
+		if musicarray.size() > 0 and current_playing_index < musicarray.size():
+			musicarray.remove_at(current_playing_index)
+			$song_list.remove_item(current_playing_index)
+			if musicarray.size() > 0:
+				if current_playing_index >= musicarray.size():
+					current_playing_index = 0
+				play_next_song()
+			else:
+				$AudioStreamPlayer.stop()
 
 func _on_area_2dx_input_event(_viewport, _event, _shape_idx):
 	if Input.is_action_just_pressed("left_click"):
