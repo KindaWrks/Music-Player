@@ -1,5 +1,5 @@
 extends Node2D
-## Testing
+
 var selected = false
 var dragging_start_position = Vector2()
 
