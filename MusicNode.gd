@@ -17,8 +17,8 @@ var paused_position: float = 0.0
 @onready var _bus := AudioServer.get_bus_index(audio_bus_name) #Sets bus index to Master
 var is_audio_paused = false
 
-var musicarray = [] # Initialize array only
-var musicindex = 0
+var musicarray = [] # Initialize array
+var musicindex = 0 # Intialize index
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
